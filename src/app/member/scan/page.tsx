@@ -34,11 +34,28 @@ export default async function MemberScanReceiver({ searchParams }: { searchParam
   const adminClient = createAdminClient()
 
   // 1. Get Member ID
-  const { data: member } = await adminClient
+  let { data: member } = await adminClient
     .from('members')
     .select('id, name')
     .eq('auth_user_id', user.id)
-    .single()
+    .maybeSingle()
+
+  if (!member && user.email) {
+    const { data: memberByEmail } = await adminClient
+      .from('members')
+      .select('id, name')
+      .eq('email', user.email)
+      .maybeSingle()
+      
+    if (memberByEmail) {
+      member = memberByEmail
+      // Backfill auth_user_id
+      await adminClient
+        .from('members')
+        .update({ auth_user_id: user.id })
+        .eq('id', memberByEmail.id)
+    }
+  }
 
   if (!member) {
     return (
