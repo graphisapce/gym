@@ -27,7 +27,7 @@ export default async function OwnerLayout({ children }: { children: React.ReactN
   const ownerName = gym?.owner_name ?? user.email ?? 'Owner'
 
   return (
-    <div className="flex min-h-screen bg-zinc-50/50 dark:bg-zinc-950">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-zinc-50/50 dark:bg-zinc-950">
       <OwnerSidebar gymName={gymName} ownerName={ownerName} />
       <main className="flex-1 min-w-0 overflow-x-hidden">
         {children}

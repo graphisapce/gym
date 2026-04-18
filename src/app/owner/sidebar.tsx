@@ -113,7 +113,7 @@ export default function OwnerSidebar({ gymName, ownerName }: SidebarProps) {
       </aside>
 
       {/* Mobile: Top Bar + Sheet */}
-      <div className="lg:hidden sticky top-0 z-40 flex items-center gap-3 border-b bg-background px-4 h-14">
+      <div className="lg:hidden sticky top-0 z-40 w-full shrink-0 flex items-center gap-3 border-b bg-background px-4 h-14">
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetTrigger
             className="inline-flex items-center justify-center h-9 w-9 rounded-md hover:bg-muted transition-colors"
