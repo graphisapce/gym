@@ -152,7 +152,7 @@ export default function MembersClient({ initialMembers, initialQuery }: { initia
             <p className="text-muted-foreground text-sm mt-1">Manage your gym members</p>
           </div>
           
-          <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <form onSubmit={handleSearch} className="relative w-full sm:w-64">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
@@ -164,18 +164,20 @@ export default function MembersClient({ initialMembers, initialQuery }: { initia
               />
             </form>
 
-            <Button variant="outline" className="text-orange-600 border-orange-200 bg-orange-50 hover:bg-orange-100 hover:text-orange-700 w-full sm:w-auto" onClick={() => setIsBulkModalOpen(true)}>
-              <BellRing className="h-4 w-4 mr-2" /> Reminders 
-              {dueMembers.length > 0 && (
-                <Badge variant="destructive" className="ml-2 px-1.5 py-0 min-w-5 justify-center rounded-full text-[10px]">
-                  {dueMembers.length}
-                </Badge>
-              )}
-            </Button>
+            <div className="flex gap-2 w-full sm:w-auto">
+              <Button variant="outline" className="flex-1 sm:flex-none text-orange-600 border-orange-200 bg-orange-50 hover:bg-orange-100 hover:text-orange-700" onClick={() => setIsBulkModalOpen(true)}>
+                <BellRing className="h-4 w-4 mr-2" /> Reminders 
+                {dueMembers.length > 0 && (
+                  <Badge variant="destructive" className="ml-2 px-1.5 py-0 min-w-5 justify-center rounded-full text-[10px]">
+                    {dueMembers.length}
+                  </Badge>
+                )}
+              </Button>
 
-            <Button onClick={() => setIsAddModalOpen(true)} className="w-full sm:w-auto">
-              <Plus className="h-4 w-4 mr-2" /> Add 
-            </Button>
+              <Button onClick={() => setIsAddModalOpen(true)} className="flex-1 sm:flex-none">
+                <Plus className="h-4 w-4 mr-2" /> Add 
+              </Button>
+            </div>
 
             <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
               <DialogContent className="sm:max-w-[425px]">

@@ -255,8 +255,8 @@ export default function PaymentsClient({
             </Button>
           </div>
           
-          <div className="flex items-center gap-2 w-full xl:w-auto">
-            <div className="relative flex-1 sm:w-48">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full xl:w-auto">
+            <div className="relative w-full sm:w-48">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search history..."
